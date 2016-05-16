@@ -11,6 +11,7 @@ import org.andengine.engine.camera.Camera;
 import org.andengine.engine.camera.hud.HUD;
 import org.andengine.engine.options.EngineOptions;
 import org.andengine.engine.options.ScreenOrientation;
+import org.andengine.engine.options.resolutionpolicy.FillResolutionPolicy;
 import org.andengine.engine.options.resolutionpolicy.RatioResolutionPolicy;
 import org.andengine.entity.IEntity;
 import org.andengine.entity.modifier.IEntityModifier;
@@ -43,7 +44,7 @@ import org.andengine.util.modifier.ease.EaseElasticInOut;
 
 import java.io.IOException;
 
-public class PinchZoomExample extends SimpleBaseGameActivity implements IOnSceneTouchListener, IPinchZoomDetectorListener {
+public class MainActivity extends SimpleBaseGameActivity implements IOnSceneTouchListener, IPinchZoomDetectorListener {
 
     private static final int CAMERA_WIDTH = 720;
     private static final int CAMERA_HEIGHT = 1280;
@@ -76,8 +77,7 @@ public class PinchZoomExample extends SimpleBaseGameActivity implements IOnScene
     @Override
     public EngineOptions onCreateEngineOptions() {
         EngineOptions engineOptions = new EngineOptions(true, ScreenOrientation.PORTRAIT_FIXED,
-                new RatioResolutionPolicy(CAMERA_WIDTH, CAMERA_HEIGHT),
-                new Camera(0, 0, CAMERA_WIDTH, CAMERA_HEIGHT));
+                new FillResolutionPolicy(), new Camera(0, 0, CAMERA_WIDTH, CAMERA_HEIGHT));
         engineOptions.getAudioOptions().setNeedsMusic(true);
         engineOptions.getAudioOptions().setNeedsSound(true);
         return engineOptions;
@@ -170,7 +170,7 @@ public class PinchZoomExample extends SimpleBaseGameActivity implements IOnScene
                 runOnUiThread(new Runnable() {
                     @Override
                     public void run() {
-                        Toast.makeText(PinchZoomExample.this, "То ся зробе", Toast.LENGTH_LONG).show();
+                        Toast.makeText(MainActivity.this, "То ся зробе", Toast.LENGTH_LONG).show();
                     }
                 });
             }
